@@ -17,7 +17,7 @@ board_mount_depth = 27+2;
 module board_mount(d){
   post_d = 3;
   post_d2 = post_d/2;
-  w = 115+2-1;
+  w = 115+2;
   h = 1;
   /*d = 27+2;*/
   module front_board_mount(){
@@ -63,7 +63,7 @@ module hdmi(wall_depth){
 
 module ports(wall_depth){
   translate([-1,0,0]){
-    translate([0,3-2,1]) cube([3+2,8.9+2,11]);//power jack
+    translate([0,3,1]) cube([3+2,8.9+2,11]);//power jack
     translate([0,20,0]) hdmi(wall_depth);
   }
 }
@@ -72,8 +72,8 @@ board_width = 139;
 module front_wall(wall){
   w = board_width+2+2;
   translate([board_mount_depth+3,-11.82,0]){
-    frame(w,19.28+3,2);
-    translate([19+3.5,0,0]) {
+    frame(w,19.28+1,2);
+    translate([19+1.5,0,0]) {
     difference(){
           cube([1,w/3.5,16]);//wall
           ports(wall);
