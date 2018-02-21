@@ -61,10 +61,27 @@ module hdmi(wall_depth){
   }
 }
 
+module dvi(wall_depth){
+  module pen() cylinder(d=1,h=wall_depth+2);
+
+  translate([0,47,10]) rotate([90,180,90]) {
+    cylinder(d=5.5,h=wall_depth+2);
+     /*hull(){
+      translate([0,2,0]) pen();
+      translate([15,2,0]) pen();
+      translate([15,5,0]) pen();
+      translate([15-3,5+3,0]) pen();
+      translate([3,5+3,0]) pen();
+      translate([0,5,0]) pen();
+    }*/
+  }
+}
+
 module ports(wall_depth){
-  translate([-1,0,0]){
-    translate([0,3,1]) cube([3+2,8.9+2,11]);//power jack
+  translate([-1,0,1]){
+    translate([0,3,1]) cube([3+2,8.9,11]);//power jack
     translate([0,20,0]) hdmi(wall_depth);
+    dvi(wall_depth);
   }
 }
 board_width = 139;
@@ -75,12 +92,12 @@ module front_wall(wall){
     frame(w,19.28+1,2);
     translate([19+1.5,0,0]) {
     difference(){
-          cube([1,w/3.5,16]);//wall
+          cube([wall,w/2.8,16]);//wall
           ports(wall);
        }
     }
   }
 }
-wall_depth = 1;
+wall_depth = 2;
 front_wall(wall_depth);
 board_mount(board_mount_depth);
